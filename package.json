@@ -1,0 +1,20 @@
+{
+  "name": "sdg7-energy-archive",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Animated SDG 7 archive: ten solar and energy-saving papers on a curved 3D shelf (React + Vite).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
