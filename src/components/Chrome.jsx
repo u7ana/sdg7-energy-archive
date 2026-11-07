@@ -1,16 +1,17 @@
 // Fixed page furniture: top bar, giant halftone words, arrows, footer and the custom cursor.
-export function TopBar({ onJump, onBrand }) {
+export function TopBar({ onJump, onBrand, onRefs }) {
   return (
     <header className="top">
       <div className="l">
         <a className="lbl" href="#top" onClick={(e) => { e.preventDefault(); onBrand(); }}>SDG 7</a>
         <span className="ln" />
-        <span className="lbl">Energy Archive</span>
+        <span className="lbl">Energy Library</span>
       </div>
       <nav className="r">
         <button className="lbl" onClick={() => onJump('feron')}>Solar</button>
         <button className="lbl" onClick={() => onJump('hossain')}>Saving</button>
-        <button className="lbl keep" onClick={() => onJump('salah')}>Egypt</button>
+        <button className="lbl" onClick={() => onJump('salah')}>Egypt</button>
+        <button className="lbl keep" onClick={onRefs}>References</button>
       </nav>
     </header>
   );

@@ -46,7 +46,7 @@ export function createShelf(o) {
 
   function setCur(onCover) {
     const t = o.cursorTarget();
-    const st = t && t.closest && t.closest('a,button,.tl,.box') ? 'btn'
+    const st = t && t.closest && t.closest('a,button,.tl,.box,input,label') ? 'btn'
       : onCover ? 'open' : (!o.isDetailOpen() && tapeAt(mx, my) >= 0 ? 'spine' : '');
     if (st !== curState) { curState = st; o.onCursor(st); }
   }

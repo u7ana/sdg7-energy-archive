@@ -1,28 +1,24 @@
-# SDG 7 Energy Archive
+# SDG 7 Energy Library
 
-Animated single-page site for GEO 217 (Sustainability and Climate Change), Alamein International University.
-Ten research papers on solar energy and energy saving (SDG 7) stand on a curved 3D shelf. Click the centre cover to open a detail sheet.
+GEO 217 project (Sustainability and Climate Change): ten research papers on SDG 7 (solar energy and energy saving) in one animated library.
 
-**Stack:** React 18 + Vite. Fonts from Google Fonts (Inter Tight, Newsreader, Big Shoulders Display).
+Each paper opens a sheet with four tabs:
+
+- **Overview**: one-line synopsis, key figures, link to the paper (DOI)
+- **Summary**: the full 600-1000 word original summary
+- **Simulate**: a small interactive model built on the paper's numbers
+- **Cite**: APA 7 reference (copy button) and in-text citations
+
+The **References** button in the top bar lists all ten papers in APA order.
 
 ## Run
 
 ```bash
 npm install
-npm run dev      # local dev server
+npm run dev      # local
 npm run build    # production build in dist/
 ```
 
-## Structure
+Deploy: import the repo in Vercel (framework preset Vite, build `npm run build`, output `dist`).
 
-- `src/engine.js` — the shelf animation loop (one `requestAnimationFrame`, writes transforms directly to the DOM so React never re-renders per frame)
-- `src/components/` — `Shelf`, `Caption`, `Timeline`, `Detail`, `Chrome` (top bar, arrows, footer, cursor), `Defs`
-- `src/data.js` — the ten papers; `src/art.js` — generated SVG covers and spines
-
-## Deploy
-
-Vercel detects Vite automatically (build `npm run build`, output `dist`).
-
-## Controls
-
-Drag, scroll or arrow keys to browse. Click the centre cover (or press Enter) to open, Esc to close.
+Stack: React 18, Vite. Shelf animation is an imperative rAF engine (`src/engine.js`); content lives in `src/data.js`, `src/summaries.js` and `src/sims.jsx`.

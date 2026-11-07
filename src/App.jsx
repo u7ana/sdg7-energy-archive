@@ -7,6 +7,7 @@ import Shelf from './components/Shelf.jsx';
 import Caption from './components/Caption.jsx';
 import Timeline from './components/Timeline.jsx';
 import Detail from './components/Detail.jsx';
+import References from './components/References.jsx';
 import { TopBar, HalftoneWords, Arrows, Footer, Cursor } from './components/Chrome.jsx';
 
 let layerId = 1;
@@ -17,6 +18,9 @@ export default function App() {
   const engine = useRef(null), detail = useRef(null);
   const detailOpen = useRef(false), cursorTarget = useRef(null);
 
+  const refsOpen = useRef(false);
+  const [refs, setRefs] = useState(false);
+  const setRefsOpen = useCallback((v) => { refsOpen.current = v; setRefs(v); }, []);
   const [cursorState, setCursorState] = useState('');
   const [layers, setLayers] = useState([{ id: 0, idx: START % N, dir: 1, leaving: false, fresh: false }]);
 
@@ -45,7 +49,7 @@ export default function App() {
       shelf: shelfRef.current, stage: stageRef.current, probe: probeRef.current, ring: ringRef.current,
       cursor: curRef.current, dot: dotRef.current, tl: tlRef.current,
       onActive, onOpen: openDetail, onCursor: setCursorState,
-      isDetailOpen: () => detailOpen.current,
+      isDetailOpen: () => detailOpen.current || refsOpen.current,
       cursorTarget: () => cursorTarget.current,
       setCursorTarget: (t) => { cursorTarget.current = t; },
     });
@@ -53,18 +57,26 @@ export default function App() {
     const refit = () => { e.measure(); fitText(stageRef.current); };
     refit();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
-    const onKey = (ev) => { if (ev.key === 'Escape') closeDetail(); };
+    const onKey = (ev) => { if (ev.key === 'Escape') { if (refsOpen.current) setRefsOpen(false); else closeDetail(); } };
     window.addEventListener('keydown', onKey);
     return () => { window.removeEventListener('keydown', onKey); e.destroy(); engine.current = null; };
-  }, [onActive, openDetail, closeDetail]);
+  }, [onActive, openDetail, closeDetail, setRefsOpen]);
 
   const jumpTo = (id) => { const i = FILMS.findIndex((f) => f.id === id); if (i >= 0) engine.current.jumpFilm(i); };
+
+  const openPaper = (id) => {
+    setRefsOpen(false);
+    const i = FILMS.findIndex((f) => f.id === id);
+    if (i < 0) return;
+    engine.current.jumpFilm(i);
+    setTimeout(openDetail, 1000);
+  };
 
   return (
     <>
       <Defs />
       <div className="grain" />
-      <TopBar onJump={jumpTo} onBrand={closeDetail} />
+      <TopBar onJump={jumpTo} onBrand={() => { setRefsOpen(false); closeDetail(); }} onRefs={() => !detailOpen.current && setRefsOpen(true)} />
       <HalftoneWords />
       <Shelf shelfRef={shelfRef} stageRef={stageRef} ringRef={ringRef} />
       <Caption layers={layers} onDone={removeLayer} />
@@ -74,6 +86,7 @@ export default function App() {
       <Cursor curRef={curRef} state={cursorState} />
       <div id="probe" ref={probeRef} />
       <Detail ref={detail} onRequestClose={closeDetail} />
+      <References open={refs} onClose={() => setRefsOpen(false)} onOpenPaper={openPaper} />
     </>
   );
 }
