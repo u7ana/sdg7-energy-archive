@@ -152,6 +152,23 @@ button.d-btn.alt:hover{background:var(--ink)}
 .ref.plain{padding-left:0;text-indent:0}
 .d-cite{display:grid;gap:14px}
 .sm-ttl{margin:0;color:var(--cobalt)}
+.an{display:grid;gap:12px}
+.an-stage{position:relative;border:1px solid var(--ink);background:#F8F5EF}
+.an-stage svg{display:block;width:100%;height:auto}
+.an-t{font-family:var(--sans);letter-spacing:-.01em}
+.an-tag{position:absolute;left:10px;top:8px;color:var(--muted)}
+.an-cap{margin:0;font-family:var(--serif);font-size:17px;line-height:1.45;min-height:3em;max-width:62ch;animation:rise .4s var(--ease) both}
+.an-ctl{display:flex;align-items:center;gap:12px}
+.an-pp{flex:none;width:40px;height:40px;border:1px solid var(--ink);font-size:12px;display:grid;place-items:center;transition:background .3s var(--ease),color .3s var(--ease)}
+.an-pp:hover{background:var(--ink);color:var(--sheet)}
+.an-ctl input[type=range]{flex:1;min-width:0;-webkit-appearance:none;appearance:none;height:22px;background:none;margin:0}
+.an-ctl input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--ink)}
+.an-ctl input[type=range]::-moz-range-track{height:2px;background:var(--ink)}
+.an-ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;margin-top:-6px;border-radius:50%;background:var(--vermilion);border:0}
+.an-ctl input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--vermilion);border:0}
+.an-chips{display:flex;gap:4px}
+.an-chips button{width:30px;height:30px;border:1px solid var(--ink);font:600 12px var(--sans)}
+.an-chips button.on{background:var(--cobalt);border-color:var(--cobalt);color:var(--cream)}
 .d-simbox{display:grid;gap:14px}
 .sm-ask{font-family:var(--serif);font-size:16.5px;line-height:1.45;margin:0;max-width:56ch}
 .sm-note{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.45;color:var(--muted);margin:0;max-width:62ch}

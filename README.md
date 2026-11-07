@@ -5,6 +5,7 @@ GEO 217 project (Sustainability and Climate Change): ten research papers on SDG 
 Each paper opens a sheet with four tabs:
 
 - **Overview**: one-line synopsis, key figures, link to the paper (DOI)
+- **Watch**: a 24-second animated explainer (4 scenes, one per topic or experiment in the paper) with play/pause and a timeline
 - **Summary**: the full 600-1000 word original summary
 - **Simulate**: a small interactive model built on the paper's numbers
 - **Cite**: APA 7 reference (copy button) and in-text citations

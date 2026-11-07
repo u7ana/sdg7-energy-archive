@@ -4,9 +4,10 @@ import { FILMS } from '../data.js';
 import { coverInner, fitText } from '../art.js';
 import { SUM } from '../summaries.js';
 import { SIMS, SIM_TITLE } from '../sims.jsx';
+import Player from '../anim.jsx';
 import { Italic, citeParen, copyText } from './cite.jsx';
 
-const TABS = [['overview', 'Overview'], ['summary', 'Summary'], ['sim', 'Simulate'], ['cite', 'Cite']];
+const TABS = [['overview', 'Overview'], ['watch', 'Watch'], ['summary', 'Summary'], ['sim', 'Simulate'], ['cite', 'Cite']];
 
 const RM = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const CLIP_EASE = 'cubic-bezier(.76,0,.18,1)';
@@ -93,10 +94,11 @@ const Detail = forwardRef(function Detail({ onRequestClose }, ref) {
                   <p className="d-cred">{film.auFull} ({film.year}). {film.journal}.</p>
                   <div className="d-acts">
                     <a className="d-btn lbl" href={`https://doi.org/${film.doi}`} target="_blank" rel="noopener noreferrer">Read the paper <span>→</span></a>
-                    <button type="button" className="d-btn alt lbl" onClick={() => setTab('sim')}>Try the simulation <span>→</span></button>
+                    <button type="button" className="d-btn alt lbl" onClick={() => setTab('watch')}>Watch the animation <span>→</span></button>
                   </div>
                 </>
               )}
+              {tab === 'watch' && <Player id={film.id} />}
               {tab === 'summary' && (
                 <article className="d-sum">
                   <p className="d-note lbl">{film.words} words · original summary of the paper</p>
